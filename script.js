@@ -27,10 +27,11 @@ function adicionarOuAlterar(e) {
     else
         alert("Ação desconhecida");
 
-    //bloqueia a ação de atualização do browser
-    e.preventDefault();
 }
-
+function novo() {
+    document.getElementById('btnCadastrarSalvar').value = "Cadastrar";
+    document.getElementById('tituloModal').innerText = "Cadastrar";
+}
 function adicionar(p) {
     var pessoas = [];
     var idValido = 1;
@@ -92,6 +93,7 @@ function alterar(p) {
 //função do botao Alterar
 function prepararAlterar(idRow) {
     document.getElementById('btnCadastrarSalvar').value = "Salvar";
+    document.getElementById('tituloModal').innerText = "Alterar";
 
     var txtNome = document.getElementById('txtNome'),
         dtpDataNascimento = document.getElementById('dtpDataNascimento'),
@@ -162,8 +164,8 @@ function listar() {
             '<td>' + nome + '</td>' +
             '<td>' + nasc + '</td>' +
             '<td>' + sexo + '</td>' +
-            '<td><button onclick="excluir(\'' + id + '\')">Excluir</button></td>' +
-            '<td><button onclick="prepararAlterar(\'' + id + '\')">Alterar</button></td>' +
+            '<td class="text-center"><button class="btn btn-info mr-1" data-toggle="modal" data-target=".modal" onclick="prepararAlterar(\'' + id + '\')">Alterar</button>' +
+            '<button class="btn btn-danger" onclick="excluir(\'' + id + '\')">Excluir</button></td>' +
             '</tr>';
     }
 }
