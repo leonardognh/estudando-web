@@ -1,0 +1,32 @@
+<h1 mat-dialog-title>{{titulo}}</h1>
+<div mat-dialog-content>
+    <form [formGroup]="pessoaForm" *ngIf="titulo !== 'Excluir'">
+        <mat-form-field class="w-100">
+            <mat-label>Nome</mat-label>
+            <input matInput formControlName="nome" required>
+            <mat-error>Campo Obrigatório!</mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-100">
+            <mat-label>Data de Nascimento</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="dataNascimento" required>
+            <mat-hint>DD/MM/AAAA</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error>Campo Obrigatório!</mat-error>
+        </mat-form-field>
+        <mat-radio-group formControlName="genero" class="genero-group">
+            <mat-label>Gênero</mat-label>
+            <mat-radio-button class="genero-button" value="Masculino">Masculino</mat-radio-button>
+            <mat-radio-button class="genero-button" value="Feminino">Feminino</mat-radio-button>
+            <mat-radio-button class="genero-button" value="Não Binário">Não Binário</mat-radio-button>
+            <mat-radio-button class="genero-button" value="Outro">Outro</mat-radio-button>
+        </mat-radio-group>
+    </form>
+    <div *ngIf="titulo === 'Excluir'">
+        <p>Tem certeza que deseja excluir {{pessoaForm.controls['nome'].value}}?</p>
+    </div>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-button (click)="fechar()">Fechar</button>
+    <button mat-raised-button [color]="titulo !== 'Excluir' ? 'primary' : 'warn'" (click)="acao()">{{titulo}}</button>
+</div>

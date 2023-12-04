@@ -1,0 +1,46 @@
+<div class="m-5">
+    <div class="row col-md-12 m-1">
+        <div class="col-md-11">
+            <h2>Angular</h2>
+        </div>
+        <div class="col-md-1">
+            <button type="button" class="btn btn-primary w-100" (click)="acao('Cadastrar')">Novo</button>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr class="text-center">
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Nascimento</th>
+                <th scope="col">Gênero</th>
+                <th scope="col">Ações</th>
+            </tr>
+        </thead>
+        <tbody class="text-center">
+            <tr *ngFor=" let pessoa of pessoas">
+                <td>
+                    {{pessoa.id}}
+                </td>
+                <td>
+                    {{pessoa.nome}}
+                </td>
+                <td>
+                    {{pessoa.dataNascimento | date: 'dd/MM/yyyy'}}
+                </td>
+                <td>
+                    {{pessoa.genero}}
+                </td>
+                <td>
+                    <button mat-raised-button color="accent" class="mr-1" (click)="acao('Alterar', pessoa)">
+                        Alterar
+                    </button>
+
+                    <button mat-raised-button color="warn" (click)="acao('Excluir', pessoa)">
+                        Excluir
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
